@@ -1,24 +1,24 @@
 ```markdown
-# Ministry of Education Subcounty Office Management System
+Ministry of Education Subcounty Office Management System
 
-## Detailed Report: Office Management System Design using Laravel 10
+ Detailed Report: Office Management System Design using Laravel 10
 
-### Project Overview
+Project Overview
 The Ministry of Education Subcounty office requires an **Office Management System** to manage and store critical school-related data for primary and secondary schools. The system will also handle school rankings based on national exam performance, financial records, and other essential information relevant to school operations. The system will be developed using **Laravel 10**, a robust PHP framework known for its scalability, security, and flexibility.
 
 ### Core Functionalities and Features
 
-1. **School Categories**  
+1. School Categories 
    The system will categorize schools into two main types:
-   - **Primary Schools**: All schools offering primary education.
-   - **Secondary Schools**: Further classified into:
-     - **Girls' Schools**
-     - **Boys' Schools**
-     - **Mixed Schools**
+   - Primary Schools: All schools offering primary education.
+   - Secondary Schools: Further classified into:
+     - Girls' Schools
+     - Boys' Schools
+     - Mixed Schools
 
 2. **School Information**  
    For each school listed in the system, the following details will be included:
-   - **Name of the School**
+   - Name of the School
    - **NEMIS IUC**
    - **School Registration Number**
    - **KNEC Registration Number**
