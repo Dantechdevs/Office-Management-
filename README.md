@@ -75,19 +75,19 @@ The Ministry of Education Subcounty office requires an **Office Management Syste
 ### Additional Features for Enhanced Learning
 To improve the usability and effectiveness of the system for educational purposes, the following enhancements can be considered:
 
-1. **School Performance Trends**  
-   Add a **Performance Trends** module to display year-over-year trends for schools, providing insight into performance improvements or declines. This will assist the office in making strategic decisions based on the school’s growth and challenges over time.
+1. School Performance Trends  
+   Add a Performance Trends module to display year-over-year trends for schools, providing insight into performance improvements or declines. This will assist the office in making strategic decisions based on the school’s growth and challenges over time.
 
-2. **Automated Report Generation**  
+2. Automated Report Generation 
    The system could include an **Automated Report Generator** to create school reports, financial summaries, and exam performance rankings. These reports can be generated in PDF format for easy sharing and archiving.
 
-3. **Data Visualization**  
+3. Data Visualization  
    Incorporate **Charts and Graphs** to visualize exam results, financial trends, and teacher-student ratios. This would make data more accessible for quick analysis and decision-making.
 
-4. **Notification System**  
+4. Notification System 
    Add a **Notification System** to alert users (like the admin, auditor, or exam office) about upcoming deadlines, financial anomalies, or newly uploaded documents that require attention.
 
-5. **Backup and Disaster Recovery**  
+5. Backup and Disaster Recovery 
    Ensure that all critical data in the system is regularly backed up, and introduce a **Disaster Recovery Plan** to restore the system in case of any unforeseen issues or data loss.
 
 ### Conclusion
