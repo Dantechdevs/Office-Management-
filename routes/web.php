@@ -34,6 +34,15 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
+// Admin Group Middleware
+Route::middleware(['auth' , 'role:admin'])->group(function (){
 Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard');
+
+}); // end  Group Admin Middleware
+
+// Office Group Middleware
+Route::middleware(['auth' , 'role:office'])->group(function (){
 Route::get('/office/dashboard',[OfficeController::class,'OfficeDashboard'])->name('office.dashboard');
+
+}); // end  Group Office Middleware
+
