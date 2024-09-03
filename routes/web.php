@@ -37,6 +37,8 @@ require __DIR__.'/auth.php';
 // Admin Group Middleware
 Route::middleware(['auth' , 'role:admin'])->group(function (){
 Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard');
+Route::get('/admin/logout',[AdminController::class,'AdminLogout'])->name('admin.logout');
+
 
 }); // end  Group Admin Middleware
 
@@ -46,3 +48,4 @@ Route::get('/office/dashboard',[OfficeController::class,'OfficeDashboard'])->nam
 
 }); // end  Group Office Middleware
 
+Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.login');
