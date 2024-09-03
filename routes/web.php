@@ -1,8 +1,15 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\Auth\TwoFaController;
+use App\Http\Controllers\WelcomeController;
+use App\Livewire\Admin\AuditTrails;
+use App\Livewire\Admin\Dashboard;
+use App\Livewire\Admin\Roles\Edit;
+use App\Livewire\Admin\Roles\Roles;
+use App\Livewire\Admin\Settings\Settings;
+use App\Livewire\Admin\Users\EditUser;
+use App\Livewire\Admin\Users\ShowUser;
+use App\Livewire\Admin\Users\Users;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -11,41 +18,33 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-// testing Layouts
-Route::view('/example-page','example-page');
-Route::view('/example-auth','example-auth');
+Route::get('/', WelcomeController::class);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::prefix(config('admintw.prefix'))->middleware(['auth', 'verified', 'activeUser', 'IpCheckMiddleware'])->group(function () {
+    Route::get('/', Dashboard::class)->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('2fa', [TwoFaController::class, 'index'])->name('admin.2fa');
+    Route::post('2fa', [TwoFaController::class, 'update'])->name('admin.2fa.update');
+    Route::get('2fa-setup', [TwoFaController::class, 'setup'])->name('admin.2fa-setup');
+    Route::post('2fa-setup', [TwoFaController::class, 'setupUpdate'])->name('admin.2fa-setup.update');
+
+    Route::prefix('settings')->group(function () {
+        Route::get('audit-trails', AuditTrails::class)->name('admin.settings.audit-trails.index');
+        Route::get('system-settings', Settings::class)->name('admin.settings');
+        Route::get('roles', Roles::class)->name('admin.settings.roles.index');
+        Route::get('roles/{role}/edit', Edit::class)->name('admin.settings.roles.edit');
+    });
+
+    Route::prefix('users')->group(function () {
+        Route::get('/', Users::class)->name('admin.users.index');
+        Route::get('{user}/edit', EditUser::class)->name('admin.users.edit');
+        Route::get('{user}', ShowUser::class)->name('admin.users.show');
+    });
 });
 
 require __DIR__.'/auth.php';
-// Admin Group Middleware
-Route::middleware(['auth' , 'role:admin'])->group(function (){
-Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard');
-Route::get('/admin/logout',[AdminController::class,'AdminLogout'])->name('admin.logout');
-
-
-}); // end  Group Admin Middleware
-
-// Office Group Middleware
-Route::middleware(['auth' , 'role:office'])->group(function (){
-Route::get('/office/dashboard',[OfficeController::class,'OfficeDashboard'])->name('office.dashboard');
-
-}); // end  Group Office Middleware
-
-Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.login');

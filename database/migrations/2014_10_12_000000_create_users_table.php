@@ -12,19 +12,26 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
-            $table->string('username')->nullable();
+            $table->string('slug');
             $table->string('email')->unique();
+            $table->string('password')->nullable();
+            $table->string('image')->nullable();
+            $table->boolean('is_office_login_only')->default(true);
+            $table->boolean('is_active')->default(true);
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('photo')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
-            $table->enum('role',['admin','office','user'])->default('user');
-            $table->enum('status',['active','inactive'])->default('active');
+            $table->timestamp('last_logged_in_at')->nullable();
+            $table->boolean('two_fa_active')->default(false);
+            $table->string('two_fa_secret_key')->nullable();
+            $table->foreignUuid('invited_by')->nullable();
+            $table->timestamp('invited_at')->nullable();
+            $table->timestamp('joined_at')->nullable();
+            $table->string('invite_token')->nullable();
+            $table->timestamp('last_activity')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
