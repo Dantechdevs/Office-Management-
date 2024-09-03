@@ -11,24 +11,20 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'phone' => fake()->phoneNumber,
-            'address' => fake()->address,
-            'photo' => fake()->imageUrl('60','60'),
-            'role' => fake()->randomElement(['admin','officer','user']),
-            'status' => fake()->randomElement('active','inactive'),
+            'name' => $this->faker->name(),
+            'slug' => Str::slug($this->faker->name()),
+            'email' => $this->faker->safeEmail(),
+            'password' => Hash::make('password'),
+            'is_active' => 1,
             'remember_token' => Str::random(10),
+            'email_verified_at' => now(),
+            'image' => null,
+            'two_fa_active' => 0,
+            'two_fa_secret_key' => null,
+            'is_office_login_only' => 0,
         ];
     }
 

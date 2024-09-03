@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,22 +30,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $url = '';
-        if($request->user()->role === 'admin')
-        {
-          $url = 'admin/dashboard';
-        }
-        elseif($request->user()->role === 'office')
-        {
-            $url = 'office/dashboard';
-
-        }
-        elseif($request->user()->role === 'user')
-        {
-            $url = '/dashboard';
+        if ($request->user()->hasRole('user')) {
+            return redirect(route('admin.users.index'));
         }
 
-        return redirect()->intended($url);
+        return redirect()->intended(route('dashboard'));
     }
 
     /**
