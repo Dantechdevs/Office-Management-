@@ -31,5 +31,14 @@ public function AdminLogout(Request $request)
 public function AdminLogin()
 {
     return view('Admin.admin_login');
+} //End method
+
+public function AdminProfile()
+{
+    $id = Auth::user()->id;
+    $profileData = User::find($id);
+    return view('Admin.admin_profile', compact('profileData'));
 }
+
+
 }
