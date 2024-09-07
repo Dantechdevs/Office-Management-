@@ -1,5 +1,7 @@
 ```markdown
 Ministry of Education Subcounty Office Management System
+<img width="956" alt="image" src="https://github.com/user-attachments/assets/bf1b7136-996e-4c54-91ec-43fab1183db4">
+
 
  Detailed Report: Office Management System Design using Laravel 10
 
