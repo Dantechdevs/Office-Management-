@@ -89,6 +89,8 @@ To improve the usability and effectiveness of the system for educational purpose
 
 5. Backup and Disaster Recovery 
    Ensure that all critical data in the system is regularly backed up, and introduce a **Disaster Recovery Plan** to restore the system in case of any unforeseen issues or data loss.
+<img width="956" alt="image" src="https://github.com/user-attachments/assets/0482f2c6-8d80-41a6-8a62-7d99f37a30b0">
+
 
 ### Conclusion
 The Laravel 10-based office management system for the Ministry of Education Subcounty office will streamline the process of managing school data, financial records, and exam rankings. It will enhance the office’s efficiency in decision-making, reporting, and document storage, ultimately improving the administrative handling of schools. Through secure data management, detailed record-keeping, and insightful analysis tools, the system will support the office’s goal of maintaining and improving educational standards across all schools in the subcounty.
