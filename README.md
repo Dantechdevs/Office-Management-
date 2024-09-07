@@ -97,3 +97,4 @@ To improve the usability and effectiveness of the system for educational purpose
 ### Conclusion
 The Laravel 10-based office management system for the Ministry of Education Subcounty office will streamline the process of managing school data, financial records, and exam rankings. It will enhance the office’s efficiency in decision-making, reporting, and document storage, ultimately improving the administrative handling of schools. Through secure data management, detailed record-keeping, and insightful analysis tools, the system will support the office’s goal of maintaining and improving educational standards across all schools in the subcounty.
 ```
+<img width="956" alt="image" src="https://github.com/user-attachments/assets/6768f21e-b21e-4af4-858d-98a5cf95affd">
