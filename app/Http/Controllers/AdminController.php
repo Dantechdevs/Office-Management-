@@ -25,7 +25,7 @@ public function AdminLogout(Request $request)
 
     $request->session()->regenerateToken();
 
-    return redirect('/admin/login');
+    return redirect()->route('admin.login');
 } // End method
 
 public function AdminLogin()
