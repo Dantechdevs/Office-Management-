@@ -48,4 +48,6 @@ Route::get('/office/dashboard',[OfficeController::class,'OfficeDashboard'])->nam
 
 }); // end  Group Office Middleware
 
+// Admin login Routes 
 Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.login');
+// End of Admin login 
