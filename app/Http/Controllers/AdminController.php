@@ -65,6 +65,14 @@ public function AdminProfileStore(Request $request)
         'alert type' => 'success'  );
         return redirect() ->back()->with($notification);
 
+} // end Method
+
+public function AdminChangePassword()
+{
+    $id = Auth::user()->id;
+    $profileData =user::find($id);
+   //
+  return view('Admin.admin_change_password', compact('profileData'));
 }
 
 }

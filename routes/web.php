@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[AdminController::class,'AdminLogin'])->name('home');
 // testing Layouts
 Route::view('/example-page','example-page');
 Route::view('/example-auth','example-auth');
@@ -40,6 +38,7 @@ Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('
 Route::get('/admin/logout',[AdminController::class,'AdminLogout'])->name('admin.logout');
 Route::get('/admin/profile',[AdminController::class, 'AdminProfile'])->name('admin.profile');
 Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
 
 }); // end  Group Admin Middleware
 
