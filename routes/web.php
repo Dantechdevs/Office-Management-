@@ -39,7 +39,7 @@ Route::get('/admin/logout',[AdminController::class,'AdminLogout'])->name('admin.
 Route::get('/admin/profile',[AdminController::class, 'AdminProfile'])->name('admin.profile');
 Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
 Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
-
+Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
 }); // end  Group Admin Middleware
 
 // Office Group Middleware
@@ -48,6 +48,6 @@ Route::get('/office/dashboard',[OfficeController::class,'OfficeDashboard'])->nam
 
 }); // end  Group Office Middleware
 
-// Admin login Routes 
+// Admin login Routes
 Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.login');
-// End of Admin login 
+// End of Admin login

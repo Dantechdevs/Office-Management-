@@ -73,6 +73,17 @@ public function AdminChangePassword()
     $profileData =user::find($id);
    //
   return view('Admin.admin_change_password', compact('profileData'));
+} //End Method
+
+public function AdminUpdatePassword(Request $request)
+{
+ //Validation
+ $request->validate(
+ [
+  'Current_password' => 'required',
+  'New_password' => 'required|confirmed'
+ ]
+);
 }
 
 }

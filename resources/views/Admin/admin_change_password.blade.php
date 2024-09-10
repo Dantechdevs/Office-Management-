@@ -63,27 +63,38 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h6 class="card-title">Update Admin Profile</h6>
+                            <h6 class="card-title">Admin Change Password</h6>
 
-                            <form method="POST" action="" class = "form-sample"
+                            <form method="POST" action="{{ 'admin.update.password' }}" class = "form-sample"
                                 enctype="multipart/form-data">
 
                                 @csrf
 
                                 <div class="mb-3">
                                     <label for="exampleInputUsername1" class="form-label">Current password</label>
-                                    <input type="text" name="username" class="form-control" id="exampleInputUsername1"
+                                    <input type="password" name="username" class="form-control @error('current_password') is-invalid @enderror " id="Current_password"
                                         autocomplete="off" >
+                                        @error('current_password')
+                                        <span>class="text-danger">{{ $message }}</span>
+
+                                        @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">New password</label>
-                                    <input type="text" name="name" class="form-control" id="exampleInputUsername1"
+                                    <input type="password" name="username" class="form-control @error('new_password') is-invalid @enderror " id="Current_password"
                                         autocomplete="off" >
+                                        @error('new_password')
+                                        <span>class="text-danger">{{ $message }}</span>
+
+                                        @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">confirm password</label>
-                                    <input type="text" name="email" class="form-control" id="exampleInputUsername1"
+                                    <input type="password" name="username" class="form-control" id="Current_password"
                                         autocomplete="off" >
+
+
+                                        @enderror
                                 </div>
 
 
