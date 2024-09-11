@@ -84,6 +84,8 @@ public function AdminUpdatePassword(Request $request)
   'New_password' => 'required|confirmed'
  ]
 );
+  // Match the Current password
+  if(!Hash::check($request))
 }
 
 }
