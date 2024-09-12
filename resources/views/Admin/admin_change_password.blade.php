@@ -72,7 +72,7 @@
 
                                 <div class="mb-3">
                                     <label for="exampleInputUsername1" class="form-label">Current password</label>
-                                    <input type="password" name="username" class="form-control @error('current_password') is-invalid @enderror " id="Current_password"
+                                    <input type="password" name="current_password" class="form-control @error('current_password') is-invalid @enderror " id="Current_password"
                                         autocomplete="off" >
                                         @error('current_password')
                                         <span>class="text-danger">{{ $message }}</span>
@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">New password</label>
-                                    <input type="password" name="username" class="form-control @error('new_password') is-invalid @enderror " id="Current_password"
+                                    <input type="password" name="new_password" class="form-control @error('new_password') is-invalid @enderror " id="new_password"
                                         autocomplete="off" >
                                         @error('new_password')
                                         <span>class="text-danger">{{ $message }}</span>
@@ -94,7 +94,7 @@
                                         autocomplete="off" >
 
 
-                                        
+
                                 </div>
 
 
