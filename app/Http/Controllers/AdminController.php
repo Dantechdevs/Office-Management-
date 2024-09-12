@@ -85,7 +85,24 @@ public function AdminUpdatePassword(Request $request)
  ]
 );
   // Match the Current password
-  if(!Hash::check($request))
+  if(!Hash::check($request->current_password, auth::user()->password))
+  {
+    $notification = array(
+        'message' => 'current password Does not Match!',
+        'alert-type' => 'error'
+    );
+    return back()->with($notification);
+  }
+  // Update New Password
+   User::WhereId(auth()->user()->id)->update(
+    [
+      'password' => Hash::make($request->new_password)
+    ]);
+    $notification = array(
+      'message' => 'Password changed Successfully',
+      'alert-type' => 'Success'
+  );
+    return back()->with($notification);
 }
 
 }
