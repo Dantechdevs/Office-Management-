@@ -63,7 +63,7 @@ public function AdminProfileStore(Request $request)
       $notification = array(
         'message' => 'Admin Profile updated successfully',
         'alert type' => 'success'  );
-        return redirect() ->back()->with($notification);
+        return redirect()->back()->with($notification);
 
 } // end Method
 
@@ -81,7 +81,7 @@ public function AdminUpdatePassword(Request $request)
  $request->validate(
  [
   'Current_password' => 'required',
-  'New_password' => 'required|confirmed'
+  'new_password' => 'required|confirmed',
  ]
 );
   // Match the Current password
@@ -99,7 +99,7 @@ public function AdminUpdatePassword(Request $request)
       'password' => Hash::make($request->new_password)
     ]);
     $notification = array(
-      'message' => 'Password changed Successfully',
+      'message' => 'Password Change Successfully',
       'alert-type' => 'Success'
   );
     return back()->with($notification);

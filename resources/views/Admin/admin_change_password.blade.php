@@ -65,7 +65,7 @@
 
                             <h6 class="card-title">Admin Change Password</h6>
 
-                            <form method="POST" action="{{ 'admin.update.password' }}" class = "form-sample"
+                            <form method="POST" action="{{ route('admin.update.password') }}" class = "form-sample"
                                 enctype="multipart/form-data">
 
                                 @csrf
@@ -75,8 +75,7 @@
                                     <input type="password" name="current_password" class="form-control @error('current_password') is-invalid @enderror " id="Current_password"
                                         autocomplete="off" >
                                         @error('current_password')
-                                        <span>class="text-danger">{{ $message }}</span>
-
+                                        <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                 </div>
                                 <div class="mb-3">
@@ -84,7 +83,7 @@
                                     <input type="password" name="new_password" class="form-control @error('new_password') is-invalid @enderror " id="new_password"
                                         autocomplete="off" >
                                         @error('new_password')
-                                        <span>class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
 
                                         @enderror
                                 </div>

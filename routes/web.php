@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\backend\SchoolController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,3 +52,10 @@ Route::get('/office/dashboard',[OfficeController::class,'OfficeDashboard'])->nam
 // Admin login Routes
 Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.login');
 // End of Admin login
+
+
+///schools
+Route::get('Schools',[SchoolController::class, 'index'])->name('schools.index');
+Route::get('Schools/primary',[SchoolController::class, 'PrimarySchool'])->name('schools.primary');
+Route::get('Schools/secondary',[SchoolController::class, 'SecondarySchool'])->name('schools.secondary');
+Route::post('Schools/secondary',[SchoolController::class, 'SecondaryStore'])->name('schools.store');
