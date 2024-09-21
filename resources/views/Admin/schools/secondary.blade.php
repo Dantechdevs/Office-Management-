@@ -1,6 +1,7 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <style>
     body, html {
@@ -90,6 +91,22 @@
     button:hover {
         background-color: #0056b3;
     }
+    .chat-point {
+        margin-top: 15px;
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    .social-icons {
+        display: flex;
+        gap: 10px;
+    }
+    .social-icons a {
+        text-decoration: none;
+        color: #333;
+        font-size: 1.5rem;
+    }
 </style>
 
 <div class="page-content">
@@ -125,6 +142,31 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="nemis_number">NEMIS Number:</label>
+                        <input type="text" class="form-control" id="nemis_number" name="nemis_number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="school_type">School Type:</label>
+                        <select class="form-control" id="school_type" name="school_type" required>
+                            <option value="">Select School Type</option>
+                            <option value="Boys">Boys</option>
+                            <option value="Girls">Girls</option>
+                            <option value="Mixed">Mixed</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="boarding_type">Boarding Type:</label>
+                        <select class="form-control" id="boarding_type" name="boarding_type" required>
+                            <option value="">Select Boarding Type</option>
+                            <option value="Day/Boarding">Day/Boarding</option>
+                            <option value="Boarding">Boarding</option>
+                            <option value="Day">Day</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="number_of_students">Number of Students:</label>
                         <input type="number" class="form-control" id="number_of_students" name="number_of_students" required>
                     </div>
@@ -149,7 +191,52 @@
                         <input type="text" class="form-control" id="school_ward" name="school_ward" required>
                     </div>
 
+                    <div class="form-group">
+                        <label for="school_phone">School Phone Number:</label>
+                        <input type="text" class="form-control" id="school_phone" name="school_phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whatsapp_number">WhatsApp Number:</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fab fa-whatsapp"></i></span>
+                            <input type="text" class="form-control" id="whatsapp_number" name="whatsapp_number" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="website">Website:</label>
+                        <input type="url" class="form-control" id="website" name="website">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="documents">Upload Documents:</label>
+                        <input type="file" class="form-control" id="documents" name="documents[]" multiple>
+                    </div>
+
+                    <div class="chat-point">
+                        <label for="chat_message">Chat Point / Short Message:</label>
+                        <textarea class="form-control" id="chat_message" name="chat_message" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Social Accounts:</label>
+                        <div class="social-icons">
+                            <a href="#" id="facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" id="tiktok"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+
                     <button type="submit">Submit</button>
+                    <button type="button" onclick="window.print();">Print</button>
                 </form>
             </div>
         </div>
