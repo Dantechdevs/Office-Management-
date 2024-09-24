@@ -225,7 +225,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Chat Point / Short Message</td>
+                                            <td>Short Message</td>
                                             <td>
                                                 <textarea name="chat_message" rows="3">{{ $school->chat_message }}</textarea>
                                             </td>

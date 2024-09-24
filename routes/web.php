@@ -58,9 +58,15 @@ Route::get('Schools/primary',[SchoolController::class, 'PrimarySchool'])->name('
 Route::get('Schools/secondary',[SchoolController::class, 'SecondarySchool'])->name('schools.secondary');
 Route::post('Schools/secondary',[SchoolController::class, 'SecondaryStore'])->name('schools.store');
 
+ // Route for displaying the form to add a new school
+ Route::get('Schools/add', [SchoolController::class, 'create'])->name('add.school');
 // Update and Delete Routes for Schools
 Route::get('Schools/edit/{school}', [SchoolController::class, 'edit'])->name('edit.school');
 Route::post('Schools/update/{school}', [SchoolController::class, 'update'])->name('update.school');
 Route::delete('Schools/delete/{school}', [SchoolController::class, 'destroy'])->name('delete.school');
+
+// Route for storing a new school
+Route::post('Schools/store', [SchoolController::class, 'store'])->name('store.school');
+
 
 //
