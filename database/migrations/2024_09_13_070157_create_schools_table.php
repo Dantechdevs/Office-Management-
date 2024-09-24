@@ -13,23 +13,26 @@ return new class extends Migration
     {
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
-        $table->string('name');
-        $table->enum('type', ['primary', 'secondary']);
-        $table->enum('category', ['girls', 'boys', 'mixed'])->nullable();
-        $table->string('NEMIS_IUC')->unique();
-        $table->string('school_reg_number')->unique();
-        $table->string('KNEC_reg_number')->unique();
-        $table->string('TSC_reg_number')->unique();
-        $table->string('KRA_reg_number')->unique();
-        $table->integer('govt_teachers_count');
-        $table->integer('bom_teachers_count');
-        $table->integer('students_count');
-        $table->integer('class_count');
-        $table->integer('digischool_tablets_count');
-        $table->integer('laptops_count');
-        $table->timestamps();
-
+            $table->string('county');
+            $table->string('sub_county');
+            $table->string('constituency')->nullable();
+            $table->string('name');
+            $table->string('school_logo')->nullable(); // Path to the school logo
+            $table->string('tsc_registration_number')->unique();
+            $table->string('kra_pin')->unique();
+            $table->string('nemis_number')->unique();
+            $table->string('school_type'); // e.g., Boarding, Day/Boarding, Day School
+            $table->string('gender_classification'); // e.g., Boys School, Girls School, Mixed School
+            $table->string('religion_sponsorship'); // e.g., Catholic, A.I.C, S.D.A, etc.
+            $table->integer('number_of_students')->nullable();
+            $table->integer('number_of_teachers')->nullable();
+            $table->string('school_zone'); // e.g., Mulala, Ithumba, etc.
+            $table->string('school_phone')->nullable();
+            $table->string('chat_message')->nullable(); // Short message or chat point
+            $table->timestamps(); // Created at and updated at timestamps
         });
+
+        
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\School;
+
 
 class SchoolController extends Controller
 {
@@ -21,7 +23,9 @@ class SchoolController extends Controller
 
     public function SecondarySchool()
     {
-       return view('Admin.schools.secondary');
+        $schools = School::all(); // Fetch all schools
+
+    return view('Admin.schools.secondary', compact('schools'));
     }
 
 

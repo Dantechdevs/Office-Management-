@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
+| Here is where you can register web routes for your application.
+| These routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
 */
@@ -35,27 +35,32 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 // Admin Group Middleware
 Route::middleware(['auth' , 'role:admin'])->group(function (){
-Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard');
-Route::get('/admin/logout',[AdminController::class,'AdminLogout'])->name('admin.logout');
-Route::get('/admin/profile',[AdminController::class, 'AdminProfile'])->name('admin.profile');
-Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
-Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
-Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
-}); // end  Group Admin Middleware
+    Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/logout',[AdminController::class,'AdminLogout'])->name('admin.logout');
+    Route::get('/admin/profile',[AdminController::class, 'AdminProfile'])->name('admin.profile');
+    Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+    Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
+    Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
+}); // end Group Admin Middleware
 
 // Office Group Middleware
 Route::middleware(['auth' , 'role:office'])->group(function (){
-Route::get('/office/dashboard',[OfficeController::class,'OfficeDashboard'])->name('office.dashboard');
-
-}); // end  Group Office Middleware
+    Route::get('/office/dashboard',[OfficeController::class,'OfficeDashboard'])->name('office.dashboard');
+}); // end Group Office Middleware
 
 // Admin login Routes
 Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.login');
 // End of Admin login
 
-
-///schools
+// Schools Group Middleware
 Route::get('Schools',[SchoolController::class, 'index'])->name('schools.index');
 Route::get('Schools/primary',[SchoolController::class, 'PrimarySchool'])->name('schools.primary');
 Route::get('Schools/secondary',[SchoolController::class, 'SecondarySchool'])->name('schools.secondary');
 Route::post('Schools/secondary',[SchoolController::class, 'SecondaryStore'])->name('schools.store');
+
+// Update and Delete Routes for Schools
+Route::get('Schools/edit/{school}', [SchoolController::class, 'edit'])->name('edit.school');
+Route::post('Schools/update/{school}', [SchoolController::class, 'update'])->name('update.school');
+Route::delete('Schools/delete/{school}', [SchoolController::class, 'destroy'])->name('delete.school');
+
+//
