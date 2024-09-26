@@ -4,7 +4,8 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\School;
+use App\Models\School; // Ensure this is the correct model
+use App\Models\SecondarySchool; // Add this if you have a separate model for secondary schools
 
 class SchoolController extends Controller
 {
@@ -15,13 +16,13 @@ class SchoolController extends Controller
     }
 
     // Display primary schools
-    public function PrimarySchool()
+    public function primarySchool()
     {
         return view('Admin.schools.primary');
     }
 
     // Display secondary schools
-    public function SecondarySchool()
+    public function secondarySchool()
     {
         $schools = School::all(); // Fetch all schools
         return view('Admin.schools.secondary', compact('schools'));
@@ -59,7 +60,7 @@ class SchoolController extends Controller
         $school->save();
 
         // Redirect back with a success message
-        return redirect()->route('Admin.schools.secondary')->with('success', 'School added successfully!');
+        return redirect()->route('schools.secondary')->with('success', 'School added successfully!');
     }
 
     // Display the form to edit an existing school
@@ -95,7 +96,7 @@ class SchoolController extends Controller
         $school->save();
 
         // Redirect back with a success message
-        return redirect()->route('Admin.schools.secondary')->with('success', 'School updated successfully!');
+        return redirect()->route('schools.secondary')->with('success', 'School updated successfully!');
     }
 
     // Handle deleting a school
@@ -105,7 +106,21 @@ class SchoolController extends Controller
         $school->delete(); // Delete the school
 
         // Redirect back with a success message
-        return redirect()->route('Admin.schools.secondary')->with('success', 'School deleted successfully!');
+        return redirect()->route('schools.secondary')->with('success', 'School deleted successfully!');
+    }
+
+    // Display a specific school
+    public function show($id)
+    {
+        $school = School::findOrFail($id);
+        return view('Admin.schools.show', compact('school')); // Adjust the view name as necessary
+    }
+
+    // Display all secondary schools
+    public function showSecondarySchools()
+    {
+        $schools = SecondarySchool::all(); // Ensure this model is correct
+        return view('Admin.schools.secondary', compact('schools')); // Adjust the view name as necessary
     }
 
     // Helper method to fill school data

@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OfficeController;
@@ -53,20 +52,24 @@ Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.lo
 // End of Admin login
 
 // Schools Group Middleware
-Route::get('Schools',[SchoolController::class, 'index'])->name('schools.index');
-Route::get('Schools/primary',[SchoolController::class, 'PrimarySchool'])->name('schools.primary');
-Route::get('Schools/secondary',[SchoolController::class, 'SecondarySchool'])->name('schools.secondary');
-Route::post('Schools/secondary',[SchoolController::class, 'SecondaryStore'])->name('schools.store');
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('schools', [SchoolController::class, 'index'])->name('schools.index');
+    Route::get('schools/primary', [SchoolController::class, 'primarySchool'])->name('schools.primary');
+    Route::get('schools/secondary', [SchoolController::class, 'secondarySchool'])->name('schools.secondary');
 
- // Route for displaying the form to add a new school
- Route::get('Schools/add', [SchoolController::class, 'create'])->name('add.school');
-// Update and Delete Routes for Schools
-Route::get('Schools/edit/{school}', [SchoolController::class, 'edit'])->name('edit.school');
-Route::post('Schools/update/{school}', [SchoolController::class, 'update'])->name('update.school');
-Route::delete('Schools/delete/{school}', [SchoolController::class, 'destroy'])->name('delete.school');
+    // Route for displaying the form to add a new school
+    Route::get('schools/add', [SchoolController::class, 'create'])->name('add.school');
+    Route::post('schools/store', [SchoolController::class, 'store'])->name('schools.store');
 
-// Route for storing a new school
-Route::post('Schools/store', [SchoolController::class, 'store'])->name('store.school');
+    // Update and Delete Routes for Schools
+    Route::get('schools/edit/{school}', [SchoolController::class, 'edit'])->name('edit.school');
+    Route::post('schools/update/{school}', [SchoolController::class, 'update'])->name('update.school');
+    Route::delete('schools/delete/{school}', [SchoolController::class, 'destroy'])->name('delete.school');
 
 
-//
+    // Route for displaying a specific school
+    Route::get('/schools/secondary', [SchoolController::class, 'showSecondarySchools'])->name('schools.secondary');
+
+
+});
+

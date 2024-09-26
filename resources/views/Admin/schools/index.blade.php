@@ -2,7 +2,7 @@
 
 @section('admin')
 <div class="page-content">
-    <h1>All Schools</h1>
+    <h1>Schools</h1>
     <a href="{{ route('schools.create') }}" class="btn btn-primary">Add New School</a>
 
     @if(session('success'))
@@ -12,7 +12,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>County</th>
                 <th>Actions</th>
@@ -21,16 +20,16 @@
         <tbody>
             @foreach($schools as $school)
                 <tr>
-                    <td>{{ $school->id }}</td>
                     <td>{{ $school->name }}</td>
                     <td>{{ $school->county }}</td>
                     <td>
                         <a href="{{ route('schools.edit', $school->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('schools.destroy', $school->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('schools.delete', $school->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
+                        <a href="{{ route('schools.show', $school->id) }}" class="btn btn-info">View</a>
                     </td>
                 </tr>
             @endforeach
