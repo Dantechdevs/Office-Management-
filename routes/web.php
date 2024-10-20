@@ -80,6 +80,10 @@ Route::middleware(['auth' , 'role:admin'])->group(function (){
     Route::controller(TeacherController::class)->group(function () {
     Route::get('/all/teacher','AllTeacher')->name('all.teacher');
     Route::get('/add/teacher','AddTeacher')->name('add.teacher');
+    Route::post('/store/teacher','StoreTeacher')->name('store.teacher');
+    Route::get('/edit/teacher/{id}','EditTeacher')->name('edit.teacher');
+    Route::post('/update/teacher/{id}', [TeacherController::class, 'UpdateTeacher'])->name('update.teacher');
+    Route::get('/delete/teacher/{id}','DeleteTeacher')->name('delete.teacher');
 
     });
 }); // end Group Teacher Middleware
