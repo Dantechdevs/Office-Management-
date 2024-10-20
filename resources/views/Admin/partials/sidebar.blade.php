@@ -39,6 +39,27 @@
             <span class="link-title">Secondary</span>
           </a>
         </li>
+        <li class="nav-item nav-category">Teachers</li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="emails">
+            <i class="link-icon" data-feather="mail"></i>
+            <span class="link-title"></span>
+            <i class="link-arrow" data-feather="chevron-down"></i>
+          </a>
+
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('all.teacher') }}" class="nav-link">
+            <i class="link-icon" data-feather="message-square"></i>
+            <span class="link-title">All Teachers</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          
+            <i class="link-icon" data-feather="calendar"></i>
+            <span class="link-title">Add Teachers</span>
+          </a>
+        </li>
         <li class="nav-item nav-category">Components</li>
         <li class="nav-item">
           <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false" aria-controls="uiComponents">

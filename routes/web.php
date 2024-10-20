@@ -3,6 +3,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\backend\SchoolController;
+use App\Http\Controllers\backend\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,3 +74,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 });
 
+// Admin Group Middleware
+Route::middleware(['auth' , 'role:admin'])->group(function (){
+   //Teacher All Routes
+    Route::controller(TeacherController::class)->group(function () {
+    Route::get('/all/teacher','AllTeacher')->name('all.teacher');
+    Route::get('/add/teacher','AddTeacher')->name('add.teacher');
+
+    });
+}); // end Group Teacher Middleware
