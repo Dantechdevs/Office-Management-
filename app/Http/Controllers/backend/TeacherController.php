@@ -20,44 +20,24 @@ class TeacherController extends Controller
         return view('backend.teacher.add_teacher');
     } // end method
 
-    public function StoreTeacher(Request $request){
-        $validatedData = $request->validate([
-            'name' =>'required|max:255',
-            'email' =>'required|unique:teachers|max:255',
-            'phone' =>'required|unique:teachers|max:255',
-            'address' =>'required',
-            'gender' =>'required',
-            'dob' =>'required',
-            'password' => '<PASSWORD>',
+    public function store(Request $request) {
+        // Validate the incoming request data
+        $request->validate([
+            'teacher_name' => 'required|string|max:255',
+            'teacher_icon' => 'required|string|max:255',
         ]);
 
-        $data = array();
-        $data['name'] = $request->name;
-        $data['email'] = $request->email;
-        $data['phone'] = $request->phone;
-        $data['address'] = $request->address;
-        $data['gender'] = $request->gender;
-        $data['dob'] = $request->dob;
-        $data['password'] = Hash::make($request->password); // encrypt password
-        $image = $request->file('image');
-        if ($image) {
-            $image_name = date('dmy_H_s_i');
-            $ext = strtolower($image->getClientOriginalExtension());
-            $image_full_name = $image_name.'.'.$ext;
-            $upload_path = 'public/backend/teacher_images/';
-            $image_url = $upload_path.$image_full_name;
-            $success = $image->move($upload_path, $image_full_name);
-            if ($success) {
-                $data['image'] = $image_url;
-            }
-        }
-        $teacher = Teacher::create($data);
-        $notification = array(
-           'message' => 'Teacher Added Successfully',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('all.teacher')->with($notification);
-    } // end method
+        // Create a new teacher record
+        Teacher::create([
+            'teacher_name' => $request->input('teacher_name'),
+            'teacher_icon' => $request->input('teacher_icon'),
+        ]);
+
+        // Redirect to the correct route
+        return redirect()->route('all.teacher')->with('success', 'Teacher added successfully!'); // Updated to all.teacher
+    }
+
+
 
     public function EditTeacher($id) {
         $teacher = Teacher::findOrFail($id); // Fetch the teacher by ID

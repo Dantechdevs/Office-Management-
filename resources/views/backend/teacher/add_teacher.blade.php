@@ -20,22 +20,23 @@
               <form action="{{ route('store.teacher') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Teacher Name</label>
-                    <input type="text" name="type_name" class="form-control @error('type_name') is-invalid @enderror">
-                    @error('type_name')
-                    <span class="text danger">{{$message}}</span>
+                    <label for="teacher_name" class="form-label">Teacher Name</label>
+                    <input type="text" name="teacher_name" id="teacher_name" class="form-control @error('teacher_name') is-invalid @enderror" required>
+                    @error('teacher_name')
+                        <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
 
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Teacher Icon</label>
-                    <input type="text" name="teacher_icon" class="form-control @error('teacher_icon') is-invalid @enderror">
+                    <label for="teacher_icon" class="form-label">Teacher Icon</label>
+                    <input type="text" name="teacher_icon" id="teacher_icon" class="form-control @error('teacher_icon') is-invalid @enderror" required>
                     @error('teacher_icon')
-                    <span class="text danger">{{$message}}</span>
+                        <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
 
-                <button type="submit">Add Teacher</button>
+                <button type="submit" class="btn btn-primary me-2">Save Changes</button>
+                <a href="{{ route('all.teacher') }}" class="btn btn-secondary">Cancel</a>
             </form>
             </div>
 @endsection
