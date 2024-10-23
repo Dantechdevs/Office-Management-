@@ -14,7 +14,15 @@ return new class extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->string('teacher_name');
-            $table->string('teacher_icon')->nullable();
+            $table->string('tsc_no')->unique(); // TSC Number
+            $table->string('email')->unique(); // Email
+            $table->string('phone')->nullable(); // Phone number
+            $table->string('alternate_phone')->nullable(); // Alternate phone number
+            $table->text('address')->nullable(); // Address
+            $table->enum('gender', ['male', 'female', 'other'])->nullable(); // Gender
+            $table->date('dob')->nullable(); // Date of Birth
+            $table->string('teacher_photo')->nullable(); // For storing photo file path
+            $table->enum('status', ['active', 'inactive'])->default('active'); // Status
             $table->timestamps();
         });
     }

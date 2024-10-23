@@ -82,7 +82,7 @@ Route::middleware(['auth' , 'role:admin'])->group(function (){
     Route::get('/add/teacher','AddTeacher')->name('add.teacher');
     Route::post('/store/teacher', [TeacherController::class, 'store'])->name('store.teacher');
     Route::get('/edit/teacher/{id}','EditTeacher')->name('edit.teacher');
-    Route::post('/update/teacher/{id}', [TeacherController::class, 'UpdateTeacher'])->name('update.teacher');
+    Route::put('/update/teacher/{id}', [TeacherController::class, 'UpdateTeacher'])->name('update.teacher');
     Route::get('/delete/teacher/{id}','DeleteTeacher')->name('delete.teacher');
 
     });
