@@ -88,8 +88,8 @@
 
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#forms" role="button" aria-expanded="false" aria-controls="forms">
-                    <i class="link-icon" data-feather="inbox"></i>
-                    <span class="link-title">Forms</span>
+                    <i class="link-icon" data-feather="users"></i>
+                    <span class="link-title">Technical Support</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse" id="forms">
@@ -112,28 +112,16 @@
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#charts" role="button" aria-expanded="false" aria-controls="charts">
                     <i class="link-icon" data-feather="pie-chart"></i>
-                    <span class="link-title">Charts</span>
+                    <span class="link-title">Device Management</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse" id="charts">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="pages/charts/apex.html" class="nav-link">Apex</a>
+                            <a href="pages/charts/apex.html" class="nav-link">Software Installation</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">ChartJs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">Flot</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/charts/morrisjs.html" class="nav-link">Morris</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/charts/peity.html" class="nav-link">Peity</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/charts/sparkline.html" class="nav-link">Sparkline</a>
+                            <a href="pages/charts/chartjs.html" class="nav-link">Inventory Tracking</a>
                         </li>
                     </ul>
                 </div>
@@ -141,16 +129,21 @@
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#tables" role="button" aria-expanded="false" aria-controls="tables">
                     <i class="link-icon" data-feather="layout"></i>
-                    <span class="link-title">Table</span>
+                    <span class="link-title">Training and Development
+                    </span>
+                    <i class="link-arrow" data-feather="chevron-down"></i></span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse" id="tables">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="pages/tables/basic-table.html" class="nav-link">Basic Tables</a>
+                            <a href="pages/tables/basic-table.html" class="nav-link">ICT Integration</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/tables/data-table.html" class="nav-link">Data Table</a>
+                            <a href="pages/tables/basic-table.html" class="nav-link">Teacher Workshops </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/tables/data-table.html" class="nav-link">Online tutorials</a>
                         </li>
                     </ul>
                 </div>
@@ -158,7 +151,7 @@
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#icons" role="button" aria-expanded="false" aria-controls="icons">
                     <i class="link-icon" data-feather="smile"></i>
-                    <span class="link-title">Icons</span>
+                    <span class="link-title">Contact Us</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse" id="icons">
@@ -215,8 +208,8 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#errorPages" role="button" aria-expanded="false" aria-controls="errorPages">
-                    <i class="link-icon" data-feather="cloud-off"></i>
-                    <span class="link-title">Error</span>
+                    <i class="link-icon" data-feather="contact"></i>
+                    <span class="link-title">Contact Us</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse" id="errorPages">

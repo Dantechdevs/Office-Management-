@@ -74,56 +74,39 @@ class TeacherController extends Controller
 
 
     public function UpdateTeacher(Request $request, $id) {
-        // Validate the incoming request data
         $validatedData = $request->validate([
-            'teacher_name' => 'required|max:255', // Updated field name
-            'teacher_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional image validation
-            'tsc_no' => 'required|string|max:255|unique:teachers,tsc_no,' . $id, // TSC Number with exception for current record
-            'email' => 'required|email|max:255|unique:teachers,email,' . $id, // Email with exception for current record
-            'phone' => 'nullable|string|max:15', // Phone number
-            'address' => 'nullable|string|max:500', // Address
-            'gender' => 'nullable|in:male,female,other', // Gender
-            'dob' => 'nullable|date', // Date of Birth
+            'teacher_name' => 'required|max:255',
+            'teacher_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'tsc_no' => 'required|string|max:255|unique:teachers,tsc_no,' . $id,
+            'email' => 'required|email|max:255|unique:teachers,email,' . $id,
+            'phone' => 'nullable|string|max:15',
+            'address' => 'nullable|string|max:500',
+            'gender' => 'nullable|in:male,female,other',
+            'dob' => 'nullable|date',
         ]);
 
-        // Find the teacher or fail
         $teacher = Teacher::findOrFail($id);
 
-        // Handle file upload for teacher_photo if a new file is provided
         if ($request->hasFile('teacher_photo')) {
-            // Delete the old image if it exists
-            if ($teacher->teacher_photo && file_exists(public_path('upload/teacher_photos/' . $teacher->teacher_photo))) {
-                unlink(public_path('upload/teacher_photos/' . $teacher->teacher_photo));
+            if ($teacher->teacher_photo && file_exists(public_path($teacher->teacher_photo))) {
+                unlink(public_path($teacher->teacher_photo));
             }
 
-            // Store the new image
             $file = $request->file('teacher_photo');
-            $teacherPhotoPath = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('upload/teacher_photos'), $teacherPhotoPath);
-
-            // Update the teacher's photo path in the validated data
+            $teacherPhotoPath = 'upload/teacher_photos/' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('upload/teacher_photos'), basename($teacherPhotoPath));
             $validatedData['teacher_photo'] = $teacherPhotoPath;
         } else {
-            // Keep the existing photo if no new file is uploaded
             $validatedData['teacher_photo'] = $teacher->teacher_photo;
         }
 
-        // Update the teacher with validated data
         $teacher->update($validatedData);
 
-        // Notification message
-        $notification = [
+        return redirect()->route('all.teacher')->with([
             'message' => 'Teacher Updated Successfully',
             'alert-type' => 'success'
-        ];
-
-        // Redirect to the correct route
-        return redirect()->route('all.teacher')->with($notification);
+        ]);
     }
-
-
-
-
 
     public function DeleteTeacher($id){
         $teacher = Teacher::find($id);
