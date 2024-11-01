@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Teacher;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
 class TeacherController extends Controller
 {
     public function AllTeacher(){
@@ -21,6 +20,7 @@ class TeacherController extends Controller
     } // end method
 
     public function store(Request $request) {
+      //  dd($request->teacher_photo);
         // Validate the incoming request data
         $request->validate([
             'teacher_name' => 'required|string|max:255',
@@ -35,13 +35,15 @@ class TeacherController extends Controller
             'status' => 'nullable|in:active,inactive'
         ]);
 
-        // Handle file upload for teacher_photo
+        /* Handle file upload for teacher_photo
         $teacherPhotoPath = null;
         if ($request->hasFile('teacher_photo')) {
             $file = $request->file('teacher_photo');
             $teacherPhotoPath = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('upload/teacher_photos'), $teacherPhotoPath);
-        }
+        }*/
+        $teacherPhotoPath='images/teachers'.'/'.time().'.'.$request->teacher_photo->extension();
+       $request->teacher_photo->move(public_path('images/teachers'),$teacherPhotoPath);
 
         // Create a new teacher record
         Teacher::create([

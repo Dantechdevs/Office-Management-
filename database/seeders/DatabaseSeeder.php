@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
+        // Call the DigitalSeeder to insert digital devices
+        $this->call(DigitalSeeder::class);
+
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

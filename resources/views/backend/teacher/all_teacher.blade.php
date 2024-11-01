@@ -40,7 +40,7 @@
                                     <td>{{ $item->teacher_name }}</td>
                                     <td>
                                         @if($item->teacher_photo) <!-- Displaying Photo -->
-                                            <img src="{{ asset('storage/' . $item->teacher_photo) }}" alt="{{ $item->teacher_name }}" style="width: 50px; height: auto;">
+                                            <img src="{{ asset($item->teacher_photo) }}" alt="{{ $item->teacher_name }}" style="width: 50px; height: auto;">
                                         @else
                                             No Image
                                         @endif

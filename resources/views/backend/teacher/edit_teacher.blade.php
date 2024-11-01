@@ -5,7 +5,7 @@
 
 <div class="page-content">
     <div class="row profile-body">
-        <div class="col-md-8 col-xl-8 middle-wrapper">
+        <div class="col-md-12 col-xl-12 middle-wrapper">
             <div class="row">
                 <div class="card">
                     <div class="card-body">

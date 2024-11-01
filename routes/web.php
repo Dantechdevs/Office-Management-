@@ -1,9 +1,11 @@
 <?php
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\backend\SchoolController;
 use App\Http\Controllers\backend\TeacherController;
+use App\Http\Controllers\backend\DigitalController; // Add this line
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[AdminController::class,'AdminLogin'])->name('home');
-// testing Layouts
-Route::view('/example-page','example-page');
-Route::view('/example-auth','example-auth');
+Route::get('/', [AdminController::class, 'AdminLogin'])->name('home');
+
+// Testing Layouts
+Route::view('/example-page', 'example-page');
+Route::view('/example-auth', 'example-auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -32,24 +35,25 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+
 // Admin Group Middleware
-Route::middleware(['auth' , 'role:admin'])->group(function (){
-    Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard');
-    Route::get('/admin/logout',[AdminController::class,'AdminLogout'])->name('admin.logout');
-    Route::get('/admin/profile',[AdminController::class, 'AdminProfile'])->name('admin.profile');
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+    Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
     Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
     Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
     Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
 }); // end Group Admin Middleware
 
 // Office Group Middleware
-Route::middleware(['auth' , 'role:office'])->group(function (){
-    Route::get('/office/dashboard',[OfficeController::class,'OfficeDashboard'])->name('office.dashboard');
+Route::middleware(['auth', 'role:office'])->group(function () {
+    Route::get('/office/dashboard', [OfficeController::class, 'OfficeDashboard'])->name('office.dashboard');
 }); // end Group Office Middleware
 
 // Admin login Routes
-Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.login');
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 // End of Admin login
 
 // Schools Group Middleware
@@ -67,23 +71,37 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('schools/update/{school}', [SchoolController::class, 'update'])->name('update.school');
     Route::delete('schools/delete/{school}', [SchoolController::class, 'destroy'])->name('delete.school');
 
-
     // Route for displaying a specific school
     Route::get('/schools/secondary', [SchoolController::class, 'showSecondarySchools'])->name('schools.secondary');
-
-
 });
 
-// Admin Group Middleware
-Route::middleware(['auth' , 'role:admin'])->group(function (){
-   //Teacher All Routes
-    Route::controller(TeacherController::class)->group(function () {
-    Route::get('/all/teacher','AllTeacher')->name('all.teacher');
-    Route::get('/add/teacher','AddTeacher')->name('add.teacher');
-    Route::post('/store/teacher', [TeacherController::class, 'store'])->name('store.teacher');
-    Route::get('/edit/teacher/{id}','EditTeacher')->name('edit.teacher');
-    Route::put('/update/teacher/{id}', [TeacherController::class, 'UpdateTeacher'])->name('update.teacher');
-    Route::get('/delete/teacher/{id}','DeleteTeacher')->name('delete.teacher');
+// Digital Devices Group Middleware
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::controller(DigitalController::class)->group(function () {
+        Route::get('/all/digitals', 'index')->name('all.digitals'); // List all digital devices
+        Route::get('/add/digital', 'create')->name('add.digital'); // Show form to add a new digital device
+        Route::post('/store/digital', 'store')->name('store.digital'); // Store new digital device
+        Route::get('/edit/digital/{id}', 'edit')->name('edit.digital'); // Show form to edit a digital device
+        Route::put('/update/digital/{id}', 'update')->name('update.digital'); // Update digital device
+        Route::delete('/delete/digital/{id}', 'destroy')->name('delete.digital'); // Delete digital device
 
+        // Specific device type routes
+        Route::get('/learner-devices', 'showLearnerDevices')->name('show.learner.devices'); // Learner Devices
+        Route::get('/teacher-devices', 'showTeacherDevices')->name('show.teacher.devices'); // Teacher Devices
+        Route::get('/routers', 'showRouters')->name('show.routers'); // Routers
+        Route::get('/hard-disks', 'showHardDisks')->name('show.hard.disks'); // Hard Disks
+        Route::get('/projectors', 'showProjectors')->name('show.projectors'); // Projectors
+    });
+}); // end Group Digital Devices Middleware
+
+// Teacher Group Middleware
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::controller(TeacherController::class)->group(function () {
+        Route::get('/all/teacher', 'AllTeacher')->name('all.teacher');
+        Route::get('/add/teacher', 'AddTeacher')->name('add.teacher');
+        Route::post('/store/teacher', [TeacherController::class, 'store'])->name('store.teacher');
+        Route::get('/edit/teacher/{id}', 'EditTeacher')->name('edit.teacher');
+        Route::put('/update/teacher/{id}', [TeacherController::class, 'UpdateTeacher'])->name('update.teacher');
+        Route::get('/delete/teacher/{id}', 'DeleteTeacher')->name('delete.teacher');
     });
 }); // end Group Teacher Middleware
