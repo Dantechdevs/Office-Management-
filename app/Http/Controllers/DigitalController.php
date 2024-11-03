@@ -4,7 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Digital; // Make sure to import your model
+use App\Models\Digital;
 
 class DigitalController extends Controller
 {
@@ -12,13 +12,13 @@ class DigitalController extends Controller
     public function index()
     {
         $digitals = Digital::all(); // Fetch all digital devices
-        return view('digitals.index', compact('digitals')); // Adjust the view as necessary
+        return view('backend.digitals.index', compact('digitals')); // Adjust the view path
     }
 
     // Show the form for creating a new digital device
     public function create()
     {
-        return view('digitals.create'); // Create the view for adding a digital device
+        return view('backend.digitals.create'); // Create the view for adding a digital device
     }
 
     // Store a newly created digital device in storage
@@ -37,7 +37,7 @@ class DigitalController extends Controller
     public function edit($id)
     {
         $digital = Digital::findOrFail($id); // Find the digital device by ID
-        return view('digitals.edit', compact('digital')); // Adjust the view as necessary
+        return view('backend.digitals.edit', compact('digital')); // Adjust the view path
     }
 
     // Update the specified digital device in storage
@@ -65,34 +65,34 @@ class DigitalController extends Controller
     public function showLearnerDevices()
     {
         $learnerDevices = Digital::where('device_type', 'Learner Devices')->get();
-        return view('digitals.learner', compact('learnerDevices'));
+        return view('backend.digitals.learner', compact('learnerDevices')); // Adjust the view path
     }
 
     // Show Teacher Devices
     public function showTeacherDevices()
     {
         $teacherDevices = Digital::where('device_type', 'Teacher Devices')->get();
-        return view('digitals.teacher', compact('teacherDevices'));
+        return view('backend.digitals.teacher', compact('teacherDevices')); // Adjust the view path
     }
 
     // Show Routers
     public function showRouters()
     {
         $routers = Digital::where('device_type', 'Router')->get();
-        return view('digitals.routers', compact('routers'));
+        return view('backend.digitals.routers', compact('routers')); // Adjust the view path
     }
 
     // Show Hard Disks
     public function showHardDisks()
     {
         $hardDisks = Digital::where('device_type', 'Hard Disk')->get();
-        return view('digitals.hard_disks', compact('hardDisks'));
+        return view('backend.digitals.hard_disks', compact('hardDisks')); // Adjust the view path
     }
 
     // Show Projectors
     public function showProjectors()
     {
         $projectors = Digital::where('device_type', 'Projector')->get();
-        return view('digitals.projectors', compact('projectors'));
+        return view('backend.digitals.projectors', compact('projectors')); // Adjust the view path
     }
 }
