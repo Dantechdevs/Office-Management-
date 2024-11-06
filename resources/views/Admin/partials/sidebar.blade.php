@@ -295,13 +295,13 @@
                 <div class="collapse" id="general-pages">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="pages/general/blank-page.html" class="nav-link">Inventory Records</a>
+                            <a href="{{---- route('all.record') ---}}" class="nav-link">Inventory Records</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/general/faq.html" class="nav-link">Staff Attendance Register</a>
+                            <a href="{{-- -s --}}" class="nav-link">Staff Attendance Register</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/general/invoice.html" class="nav-link">Text Books Inventory</a>
+                            <a href="{{-- - --}}" class="nav-link">Text Books Inventory</a>
                         </li>
                     </ul>
                 </div>

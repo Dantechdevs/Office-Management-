@@ -103,5 +103,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/edit/teacher/{id}', 'EditTeacher')->name('edit.teacher');
         Route::put('/update/teacher/{id}', [TeacherController::class, 'UpdateTeacher'])->name('update.teacher');
         Route::get('/delete/teacher/{id}', 'DeleteTeacher')->name('delete.teacher');
-    });
-}); // end Group Teacher Middleware
+    }); // end Group Teacher Middleware
+
+
+});
