@@ -13,7 +13,7 @@ class AdminController extends Controller
 {
     public function AdminDashboard()
     {
-       return view('Admin.index');
+       return view('Admin.admin_dashboard');
     } //End Method
 
 
