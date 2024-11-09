@@ -115,6 +115,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/update/record/{id}', 'update')->name('update.record'); // Update a record
     Route::post('/import/records', 'import')->name('import.records'); // Import document
     Route::post('/export/records', 'export')->name('export.records'); // Export records
+    Route::post('/export/records', 'export')->name('export.record'); // Export records
     Route::delete('/delete/record/{id}', 'delete')->name('delete.record'); // Delete a record
 });
 });

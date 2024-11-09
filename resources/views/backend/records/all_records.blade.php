@@ -87,10 +87,6 @@
                 <nav class="page-breadcrumb">
                     <ol class="breadcrumb">
                         <a href="{{ route('add.record') }}" class="btn btn-info">Add New Record</a>
-                        <form action="{{ route('export.records') }}" method="POST" style="display:inline;">
-                            @csrf
-                            <button type="submit" class="btn btn-primary" onclick="showSuccessAlert('Records exported successfully!')">Export Records</button>
-                        </form>
                         <form action="{{ route('import.records') }}" method="POST" enctype="multipart/form-data" style="display:inline;">
                             @csrf
                             <input type="file" name="document" accept=".doc,.docx,.pdf,.txt" required>
@@ -120,10 +116,15 @@
                                                     <td>{{ $record->created_at->format('Y-m-d H:i') }}</td>
                                                     <td>
                                                         <a href="{{ route('edit.record', $record->id) }}" class="btn btn-warning">Edit</a>
-                                                        <form action="{{ route('delete.record', $record->id) }}" method="POST" style="display:inline;" onsubmit="confirmDelete(this);">
+                                                        <button class="btn btn-primary" onclick="printDocument('{{ asset('path/to/documents/' . $record->file_name) }}')">Print</button>
+                                                        <form action="{{ route('delete.record', $record->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                        <form action="{{ route('export.record', $record->id) }}" method="POST" style="display:inline;">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-success">Export</button>
                                                         </form>
                                                     </td>
                                                 </tr>
@@ -141,7 +142,7 @@
             @include('admin.partials.footer')
 
             <!-- Moving Text -->
-            <div id="movingText">Welcome to Nzaui Sub-County Offices,<span id="currentDateTime"></span></div>
+            <div id="movingText">Welcome to Nzaui Sub-County Offices!: <span id="currentDateTime"></span></div>
         </div>
     </div>
 
@@ -197,25 +198,19 @@
             }
         @endif
 
-        function confirmDelete(form) {
-            event.preventDefault(); // Prevent default form submission
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to recover this record!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit(); // Submit the form if confirmed
-                }
-            });
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this record?"); // Confirm deletion
         }
 
         function showDocument(url) {
             window.open(url, '_blank'); // Open the document in a new tab
+        }
+
+        function printDocument(url) {
+            const printWindow = window.open(url, '_blank');
+            printWindow.onload = function() {
+                printWindow.print();
+            };
         }
 
         function showSuccessAlert(message) {
