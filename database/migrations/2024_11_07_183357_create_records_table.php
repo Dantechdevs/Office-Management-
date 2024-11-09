@@ -9,30 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('records', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Add the name column
-            $table->string('record_file')->default('')->nullable(); // Set default value
+            $table->string('name'); // Name column
+            $table->string('record_file')->default('')->nullable(); // Record file column
             $table->string('description')->nullable(); // Optional description
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::table('records', function (Blueprint $table) {
-            // Check if the column exists before trying to drop it
-            if (Schema::hasColumn('records', 'name')) {
-                $table->dropColumn('name');
-            }
-        });
-
-        // Drop the records table
         Schema::dropIfExists('records');
     }
 };
+
+
