@@ -1,11 +1,22 @@
 @extends('admin.admin_dashboard')
+
 @section('admin')
 
 <div class="page-content">
 
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <a href="{{ route('add.records') }}" class="btn btn-info">All Records</a>
+            <a href="{{ route('add.record') }}" class="btn btn-info">Add New Record</a>
+            <button class="btn btn-success" id="printButton">Print</button>
+            <form action="{{ route('export.records') }}" method="POST" style="display:inline;">
+                @csrf
+                <button type="submit" class="btn btn-primary">Export Records</button>
+            </form>
+            <form action="{{ route('import.records') }}" method="POST" enctype="multipart/form-data" style="display:inline;">
+                @csrf
+                <input type="file" name="document" accept=".doc,.docx,.pdf,.txt" required>
+                <button type="submit" class="btn btn-warning">Import Document</button>
+            </form>
         </ol>
     </nav>
 
@@ -13,45 +24,33 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">TinyMCE</h4>
-                    <p class="text-muted mb-3">Read the <a href="https://www.tiny.cloud/docs/" target="_blank"> Official TinyMCE Documentation </a> for a full list of instructions and other options.</p>
-                    <textarea class="form-control" name="tinymce" id="tinymceExample" rows="10"></textarea>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">EasyMDE</h4>
-                    <p class="text-muted mb-3">Read the <a href="https://easy-markdown-editor.tk/" target="_blank"> Official EasyMDE Documentation </a> for a full list of instructions and other options.</p>
-                    <textarea class="form-control" name="easyMDE" id="easyMdeExample" rows="10"></textarea>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12 stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Ace Editor</h4>
-                    <p class="text-muted mb-3">Read the <a href="https://ace.c9.io/" target="_blank"> Official Ace Editor Documentation </a> for a full list of instructions and other options.</p>
-                    <div class="row">
-                        <div class="col-md-12 grid-margin">
-                            <h5 class="card-subtitle mb-2">HTML Mode</h5>
-                            <textarea id="ace_html" class="ace-editor w-100"></textarea>
-                        </div>
-                        <div class="col-md-12 grid-margin">
-                            <h5 class="card-subtitle mb-2">SCSS Mode</h5>
-                            <textarea id="ace_scss" class="ace-editor w-100"></textarea>
-                        </div>
-                        <div class="col-md-12">
-                            <h5 class="card-subtitle mb-2">Javascript Mode</h5>
-                            <textarea id="ace_javaScript" class="ace-editor w-100"></textarea>
-                        </div>
+                    <h4 class="card-title">Uploaded Documents</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Document Name</th>
+                                    <th>Uploaded On</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($records as $record)
+                                    <tr>
+                                        <td>{{ $record->name }}</td>
+                                        <td>{{ $record->created_at->format('Y-m-d H:i') }}</td> <!-- Displaying date and time -->
+                                        <td>
+                                            <a href="{{ route('edit.record', $record->id) }}" class="btn btn-warning">Edit</a>
+                                            <form action="{{ route('delete.record', $record->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -59,5 +58,11 @@
     </div>
 
 </div>
+
+<script>
+    document.getElementById('printButton').addEventListener('click', function() {
+        window.print();
+    });
+</script>
 
 @endsection

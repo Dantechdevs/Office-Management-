@@ -106,8 +106,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/teacher/{id}', 'DeleteTeacher')->name('delete.teacher');
     }); // end Group Teacher Middleware
 
-    // Records Group routes
-    Route::controller(RecordController::class)->group(function(){
-       Route::get('/all/records', 'AllRecords')->name('all.records');
-     });
+  // Records Group routes
+  Route::controller(RecordController::class)->group(function () {
+    Route::get('/all/records', 'AllRecords')->name('all.records'); // Display all records
+    Route::get('/add/record', 'create')->name('add.record'); // Show form to add a new record
+    Route::post('/store/record', 'store')->name('store.record'); // Store a new record
+    Route::get('/edit/record/{id}', 'edit')->name('edit.record'); // Show form to edit a record
+    Route::put('/update/record/{id}', 'update')->name('update.record'); // Update a record
+    Route::post('/import/records', 'import')->name('import.records'); // Import document
+    Route::post('/export/records', 'export')->name('export.records'); // Export records
+    Route::delete('/delete/record/{id}', 'delete')->name('delete.record'); // Delete a record
+});
 });
