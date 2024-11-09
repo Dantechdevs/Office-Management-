@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('office_records', function (Blueprint $table) {
+        Schema::create('records', function (Blueprint $table) {
             $table->id();
             $table->string('record_file'); // Path to the uploaded file
             $table->string('description')->nullable(); // Optional description
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('office_records');
+        Schema::dropIfExists('records');
     }
 };

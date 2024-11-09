@@ -6,6 +6,7 @@ use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\backend\SchoolController;
 use App\Http\Controllers\backend\TeacherController;
 use App\Http\Controllers\backend\DigitalController; // Add this line
+use App\Http\Controllers\backend\RecordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -105,5 +106,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/teacher/{id}', 'DeleteTeacher')->name('delete.teacher');
     }); // end Group Teacher Middleware
 
-
+    // Records Group routes
+    Route::controller(RecordController::class)->group(function(){
+       Route::get('/all/records', 'AllRecords')->name('all.records');
+     });
 });
