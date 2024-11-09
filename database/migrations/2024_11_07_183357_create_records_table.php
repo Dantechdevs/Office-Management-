@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('records', function (Blueprint $table) {
             $table->id();
-            $table->string('record_file'); // Path to the uploaded file
+            $table->string('name'); // Add the name column
+            $table->string('record_file')->default('')->nullable(); // Set default value
             $table->string('description')->nullable(); // Optional description
             $table->timestamps();
         });
@@ -24,6 +25,14 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('records', function (Blueprint $table) {
+            // Check if the column exists before trying to drop it
+            if (Schema::hasColumn('records', 'name')) {
+                $table->dropColumn('name');
+            }
+        });
+
+        // Drop the records table
         Schema::dropIfExists('records');
     }
 };

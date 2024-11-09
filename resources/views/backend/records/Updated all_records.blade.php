@@ -3,10 +3,8 @@
 @section('admin')
 
 <div class="page-content">
-
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <a href="{{ route('add.record') }}" class="btn btn-info">Add New Record</a>
             <button class="btn btn-success" id="printButton">Print</button>
             <form action="{{ route('export.records') }}" method="POST" style="display:inline;">
                 @csrf
@@ -56,20 +54,6 @@
             </div>
         </div>
     </div>
-
-    <!-- TinyMCE Section -->
-    <div class="row">
-        <div class="col-md-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Documents </h4>
-                    <p class="text-muted mb-3">Read the <a href="https://www.tiny.cloud/docs/" target="_blank"> Official TinyMCE Documentation </a>for a full list of instructions and other options.</p>
-                    <textarea class="form-control" name="tinymce" id="tinymceExample" rows="10"></textarea>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 <script>

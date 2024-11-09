@@ -4,12 +4,8 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Record; // Ensure this model exists
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-
 
 class RecordController extends Controller
 {
@@ -19,7 +15,15 @@ class RecordController extends Controller
         $records = Record::all(); // Fetching all records
         return view('backend.records.all_records', compact('records'));
     }
-    public function import(Request $request)
+
+    // Show the form to create a new record
+    public function create()
+    {
+        return view('backend.records.create_record'); // Adjust the view name as necessary
+    }
+
+    // Store a newly created record
+    public function store(Request $request)
     {
         $request->validate([
             'document' => 'required|file|mimes:doc,docx,pdf,txt|max:2048', // Validate file
@@ -29,14 +33,37 @@ class RecordController extends Controller
         $path = $request->file('document')->store('documents');
 
         // Create a new record in the database
-        Record::create(['name' => $request->file('document')->getClientOriginalName(), 'path' => $path]);
+        Record::create([
+            'name' => $request->file('document')->getClientOriginalName(),
+            'path' => $path
+        ]);
 
-        return redirect()->route('all.records')->with('success', 'Document imported successfully.');
+        return redirect()->route('all.records')->with('success', 'Document created successfully.');
     }
 
+    public function import(Request $request)
+{
+    $request->validate([
+        'document' => 'required|file|mimes:doc,docx,pdf,txt|max:2048', // Validate file
+    ]);
+
+    // Store the uploaded document
+    $path = $request->file('document')->store('documents');
+
+    // Create a new record in the database
+    Record::create([
+        'name' => $request->file('document')->getClientOriginalName(),
+        'path' => $path,
+        'record_file' => $request->file('document')->getClientOriginalName() // Add this line
+    ]);
+
+    return redirect()->route('all.records')->with('success', 'Document imported successfully.');
+}
+
+
+    // Export all records to a CSV file
     public function export()
     {
-        // Logic to export records (e.g., to a CSV file)
         $records = Record::all();
         $csvFileName = 'documents_export_' . date('Ymd') . '.csv';
         $handle = fopen('php://output', 'w');
@@ -56,6 +83,7 @@ class RecordController extends Controller
         exit;
     }
 
+    // Delete a record and its associated file
     public function delete($id)
     {
         $record = Record::findOrFail($id);
@@ -65,12 +93,14 @@ class RecordController extends Controller
         return redirect()->route('all.records')->with('success', 'Document deleted successfully.');
     }
 
+    // Show the form to edit a record
     public function edit($id)
     {
         $record = Record::findOrFail($id); // Find the record by ID
         return view('backend.records.edit_record', compact('record')); // Return the edit view
     }
 
+    // Update a record
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -93,6 +123,4 @@ class RecordController extends Controller
 
         return redirect()->route('all.records')->with('success', 'Document updated successfully.');
     }
-
-
 }
