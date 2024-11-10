@@ -96,7 +96,7 @@
                 </nav>
 
                 <div class="row">
-                    <div class="col-md-12 grid-margin stretch-card">
+                    <div class="col-md-16 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Uploaded Documents</h4>
