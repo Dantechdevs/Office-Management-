@@ -2,6 +2,23 @@
 
 @section('admin')
 
+<style>
+    .table {
+        margin: 0 auto; /* Center the table */
+        background-color: white; /* White background */
+        color: blue; /* Blue font color */
+        border-collapse: collapse; /* Ensure borders are combined */
+    }
+    .table th, .table td {
+        border: 1px solid blue; /* Blue borders for table cells */
+        padding: 8px; /* Add some padding */
+        text-align: center; /* Center text in cells */
+    }
+    .table th {
+        background-color: #f0f8ff; /* Optional: Light background for header */
+    }
+</style>
+
 <div class="page-content">
     <h2>Learners Devices (LDD)</h2>
 

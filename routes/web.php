@@ -87,11 +87,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::delete('/delete/digital/{id}', 'destroy')->name('delete.digital'); // Delete digital device
 
         // Specific device type routes
-        Route::get('/learner-devices', 'showLearnerDevices')->name('show.learner.devices'); // Learner Devices
-        Route::get('/teacher-devices', 'showTeacherDevices')->name('show.teacher.devices'); // Teacher Devices
+        Route::get('/learner-devices', [DigitalController::class, 'showLearnerDevices'])->name('show.learner.devices');
+        Route::get('/teacher-devices', [DigitalController::class, 'showTeacherDevices'])->name('show.teacher.devices');// Teacher Devices
         Route::get('/routers', 'showRouters')->name('show.routers'); // Routers
         Route::get('/hard-disks', 'showHardDisks')->name('show.hard.disks'); // Hard Disks
         Route::get('/projectors', 'showProjectors')->name('show.projectors'); // Projectors
+
     });
 }); // end Group Digital Devices Middleware
 

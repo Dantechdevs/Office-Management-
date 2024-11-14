@@ -62,11 +62,12 @@ class DigitalController extends Controller
     }
 
     // Show Learner Devices
-    public function showLearnerDevices()
-    {
-        $learnerDevices = Digital::where('device_type', 'Learner Devices')->get();
-        return view('backend.digitals.learner', compact('learnerDevices')); // Adjust the view path
-    }
+   // Show Learner Devices
+public function showLearnerDevices()
+{
+    $devices = Digital::where('device_type', 'Learner Devices')->get();
+    return view('backend.digitals.learner', compact('devices')); // Ensure this matches the view path
+}
 
     // Show Teacher Devices
     public function showTeacherDevices()
@@ -95,4 +96,5 @@ class DigitalController extends Controller
         $projectors = Digital::where('device_type', 'Projector')->get();
         return view('backend.digitals.projectors', compact('projectors')); // Adjust the view path
     }
+
 }
