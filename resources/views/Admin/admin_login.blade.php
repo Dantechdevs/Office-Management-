@@ -122,4 +122,7 @@
             case 'warning':
                 toastr.warning("{{ Session::get('message') }}");
                 break;
-                
+            default:
+                echo "over engning is fun";
+
+        }
