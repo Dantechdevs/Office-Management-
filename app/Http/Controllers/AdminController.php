@@ -30,14 +30,14 @@ public function AdminLogout(Request $request)
 
 public function AdminLogin()
 {
-    return view('Admin.admin_login');
+    return view('admin.admin_login');
 } //End method
 
 public function AdminProfile()
 {
     $id = Auth::user()->id;
     $profileData = User::find($id);
-    return view('Admin.admin_profile', compact('profileData'));
+    return view('admin.admin_profile', compact('profileData'));
 }
 
 public function AdminProfileStore(Request $request)
@@ -72,7 +72,7 @@ public function AdminChangePassword()
     $id = Auth::user()->id;
     $profileData =user::find($id);
    //
-  return view('Admin.admin_change_password', compact('profileData'));
+  return view('admin.admin_change_password', compact('profileData'));
 } //End Method
 
 public function AdminUpdatePassword(Request $request)
