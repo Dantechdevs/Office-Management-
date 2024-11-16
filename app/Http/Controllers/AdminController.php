@@ -30,7 +30,7 @@ public function AdminLogout(Request $request)
 
 public function AdminLogin()
 {
-    return view('admin.admin_login');
+    return view('admin.adminlogin');
 } //End method
 
 public function AdminProfile()
