@@ -1,5 +1,5 @@
 
-@extends('admin.admin_dashboard')
+@extends('Admin.admin_dashboard')
 @section('admin')
 <div class="page-content">
 

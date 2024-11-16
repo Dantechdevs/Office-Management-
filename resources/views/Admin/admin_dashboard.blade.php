@@ -291,9 +291,9 @@
 			</nav>
 		<!-- partial -->
 
-        @include('admin.partials.navbar')
+        @include('Admin.partials.navbar')
 
-        @include('admin.partials.sidebar')
+        @include('Admin.partials.sidebar')
 
       @yield('admin')
 
