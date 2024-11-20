@@ -122,7 +122,8 @@
             case 'warning':
                 toastr.warning("{{ Session::get('message') }}");
                 break;
-            default:
-                echo "over engning is fun";
-
-        }
+        } // Closing the switch statement
+        @endif // Closing the if statement
+    </script>
+</body>
+</html>
