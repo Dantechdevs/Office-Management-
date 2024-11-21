@@ -46,7 +46,7 @@
                                         <tr>
                                             <td>Sub-County</td>
                                             <td>
-                                                <input type="text" name="sub_county" value="{{ $school->sub_county }}" readonly>
+                                                <input type="text" name="subcounty" value="{{ $school->subcounty }}" readonly>
                                             </td>
                                             <td>
                                                 <a href="{{ route('edit.school', $school->id) }}" class="btn btn-warning">Edit</a>
@@ -54,13 +54,9 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Constituency</td>
+                                            <td>KNEC Code</td>
                                             <td>
-                                                <select name="constituency" required>
-                                                    <option value="">Select Constituency</option>
-                                                    <option value="Kibwezi West" {{ $school->constituency == 'Kibwezi West' ? 'selected' : '' }}>Kibwezi West</option>
-                                                    <option value="Makueni" {{ $school->constituency == 'Makueni' ? 'selected' : '' }}>Makueni</option>
-                                                </select>
+                                                <input type="text" name="knec_code" value="{{ $school->knec_code }}" readonly>
                                             </td>
                                             <td>
                                                 <a href="{{ route('edit.school', $school->id) }}" class="btn btn-warning">Edit</a>
@@ -68,13 +64,29 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Secondary School Name</td>
+                                            <td>TSC Registration Number</td>
                                             <td>
-                                                <select name="secondary_school_name" required>
-                                                    <option value="">Select Secondary School</option>
-                                                    <option value="{{ $school->name }}" selected>{{ $school->name }}</option>
-                                                    <!-- Add other options here -->
-                                                </select>
+                                                <input type="text" name="tsc_registration_no" value="{{ $school->tsc_registration_no }}" readonly>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('edit.school', $school->id) }}" class="btn btn-warning">Edit</a>
+                                                <a href="{{ route('delete.school', $school->id) }}" class="btn btn-danger" id="delete">Delete</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Contact Numbers</td>
+                                            <td>
+                                                <input type="text" name="contact_numbers" value="{{ $school->contact_numbers }}" readonly>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('edit.school', $school->id) }}" class="btn btn-warning">Edit</a>
+                                                <a href="{{ route('delete.school', $school->id) }}" class="btn btn-danger" id="delete">Delete</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Zone</td>
+                                            <td>
+                                                <input type="text" name="zone" value="{{ $school->zone }}" readonly>
                                             </td>
                                             <td>
                                                 <a href="{{ route('edit.school', $school->id) }}" class="btn btn-warning">Edit</a>
@@ -90,6 +102,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 @endsection
