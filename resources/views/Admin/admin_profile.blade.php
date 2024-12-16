@@ -7,10 +7,10 @@
 
     <div class="row profile-body">
       <!-- left wrapper start -->
-      <div class="d-none d-md-block col-md-4 col-xl-4 left-wrapper">
+      <div class="d-none d-md-block col-md-12 col-xl-12 left-wrapper">
         <div class="card rounded">
           <div class="card-body">
-            <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="d-flex align-items-center justify-content-between mb-12">
 
               <div>
                 <img class="wd-100 rounded-circle" src="{{(!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) :url('upload/no_image.jpg')}}" alt="profile">
